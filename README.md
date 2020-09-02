@@ -1,1 +1,7 @@
-# toy-robot
+-   I implemented all the relevant logic (domain) with Test Driven Design. There are 27 tests covering all the scenarios.
+-   I tried to encapsulate all the domain logic inside the Domain project following a domain driven design approach.
+-   Robot acts as the aggregate root and interacts with a FacingDirection class (State pattern) and a Position value object. The FacingDirection class prevents the creation of many switch statements based on an enum value instead of explicit state transitions.
+-   Robot requires an IMessageWriter dependency as well as the table size. IMessageWriter allows to change the console output for a file output, for instance, keeping the domain agnostic from the way it's presented. Only the interface, IMessageWriter, is defined in the Domain. Every UI/WebService etc. will reference the domain an implement specific message writers.
+-   RobotStringCommandInterpreter translates between the strings from the command line and the correct commands on the Robot
+-   I only unit tested the domain, using XUnit, NSubstitute to mock the IMessageWriter, assertions with FluentAssertions and AutoFixture in order to simplify the Arrange part of the tests.
+-   I considered using the command pattern for each Robot action but decided it was overkill and wasn't adding value.
